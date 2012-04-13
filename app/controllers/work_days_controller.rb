@@ -4,6 +4,7 @@ class WorkDaysController < ApplicationController
   # GET /work_days
   # GET /work_days.json
   def index
+    # TEST
     @work_days = WorkDay.all()
     @work_days_hash = create_calendar_month_hash @work_days
     @week_days_array = wdays_array_for_month(Time.now)
