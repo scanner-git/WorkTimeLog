@@ -1,0 +1,2 @@
+module WorkDaysViewsHelper
+end
