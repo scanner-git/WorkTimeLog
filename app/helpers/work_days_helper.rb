@@ -1,7 +1,6 @@
 module WorkDaysHelper
 
 	def create_calendar(days_array, work_days)
-		init = true
 		wdayhash = { 0 => "SO", 1 => "MO", 2 => "DI", 3 => "MI", 4 => "DO", 5 => "FR", 6 => "SA" }
 		# TABLE
 		content_tag(:table, :border => 1, :width => "90%", :textalligne => "center"){		
@@ -16,10 +15,10 @@ module WorkDaysHelper
 			days_array.each do |week_hash|
 				c_c_tag(:tr){
 					week_hash.each do |wday, day|
-						if work_days[day].class == WorkDay
-							c_c_tag(:td, day)
+						if work_days[day.to_date].class == WorkDay 
+							c_c_tag(:td, day.to_date)
 						else
-							c_c_tag(:td, day)
+							c_c_tag(:td, day.day)
 						end
 					end
 				}

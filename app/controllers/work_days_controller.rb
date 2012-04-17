@@ -4,10 +4,12 @@ class WorkDaysController < ApplicationController
   # GET /work_days
   # GET /work_days.json
   def index
-    # TEST
-    @work_days = WorkDay.all()
+    #@work_days = WorkDay.all()
+    @time = Time.new(params[:year], params[:month], params[:day])
+    @work_days = WorkDay.in_month(month_from_beginnig_week_to_end_week(@time, range: true, date: true))
+
     @work_days_hash = create_calendar_month_hash @work_days
-    @week_days_array = wdays_array_for_month(Time.now)
+    @week_days_array = wdays_array_for_month(@time)
     
     respond_to do |format|
       format.html # index.html.erb
@@ -88,64 +90,48 @@ class WorkDaysController < ApplicationController
 
   private
 
-  # Erzeugt aus übergebenen WorkDay Array ein Hash mit den Monatstagen (1-31) als Schlüssel
+  # Erzeugt aus übergebenen WorkDay Array ein Hash mit dem Datum als Schlüssel
   # und dem WorkDay Objekt als Wert.
   # Parameter: [WorkDay]
   def create_calendar_month_hash work_days
     work_days_hash = Hash.new("XXX")
     work_days.each do |i| 
-      puts i.day.day
-      work_days_hash[i.day.day] = i
+      work_days_hash[i.day] = i
     end
     work_days_hash
   end
 
-  # Erzeugt für den übergebenen Monat ein Array Wochen.
-  # Jede Woch in dem Array ist ein Hash mit dem Wochentag als Schlüssel und dem Monatstag als Wert. 
-  # Parameter: Time Objekt 
-  def wdays_array_for_month(time)
+
+  def month_from_beginnig_week_to_end_week(date, param=Hash.new)
+    start_month =date.beginning_of_month
+    end_month = date.end_of_month
+    start_date = start_month.beginning_of_week
+    end_date = end_month.end_of_week
+    return start_date.to_date..end_date.to_date if (param[:date] == true && param[:range] == true)
+    return start_date..end_date if param[:range] == true
+    return [start_date.to_date, end_date.to_date] if param[:date] == true
+    return [start_date, end_date]
+  end
+
+  def wdays_array_for_month time
     days = Array.new
     week = Hash.new
-    last_week_day = Integer
-
-    new_time = time.beginning_of_month
-    week_begin = new_time.wday
-    week_end = time.end_of_month.wday
-
-    puts "###### #{week_begin}"
-
-    if week_begin != 1
-      [1, 2, 3, 4, 5, 6, 0].each do |i| 
-        if i == week_begin 
-          break
-        end
-        week[i] = "XXX" 
-      end  
-    end
-
-    (time.end_of_month.day).times do |j|
-      if new_time.wday == 0
-        week[0] = new_time.day
+    start_and_end_time = month_from_beginnig_week_to_end_week time  
+    time_iterate(start_and_end_time[0], start_and_end_time[1], 1.day){ |i|
+      week[i.wday] = i
+      if i.wday == 0
         days << week
         week = Hash.new
-        new_time += 1.day
-        next
       end
+    }
+    
+    days
+  end
 
-      week[new_time.wday] = new_time.day
-      last_week_day = new_time.wday
-      new_time += 1.day
-    end
-
-    if last_week_day != 0
-      [1, 2, 3, 4, 5, 6].each do |i|
-        next if last_week_day >= i
-        week[i] = "XXX" 
-      end  
-      week[0] = "XXX"
-      days << week
-    end
-
+  def time_iterate(start_time, end_time, step, &block)
+    begin
+      yield(start_time)
+    end while (start_time += step) <= end_time
   end
 
 end
