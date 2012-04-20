@@ -16,9 +16,10 @@ module WorkDaysHelper
 				c_c_tag(:tr){
 					week_hash.each do |wday, day|
 						if work_days[day.to_date].class == WorkDay 
-							c_c_tag(:td, day.to_date)
+							d = WorkDay.where(day: day.to_date).first
+							c_c_tag(:td, link_to(day.to_date, edit_work_day_path(d)))
 						else
-							c_c_tag(:td, day.day)
+							c_c_tag(:td, link_to(day.day, new_work_day_path(day: day)))
 						end
 					end
 				}

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120411082001) do
+ActiveRecord::Schema.define(:version => 20120416120846) do
 
   create_table "work_days", :force => true do |t|
     t.date     "day"
@@ -21,5 +21,7 @@ ActiveRecord::Schema.define(:version => 20120411082001) do
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
+
+  add_index "work_days", ["day"], :name => "index_work_days_on_day", :unique => true
 
 end

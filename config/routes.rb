@@ -8,7 +8,14 @@ WorkTimeLog::Application.routes.draw do
 
   get "work_days_views/year"
 
-  resources :work_days
+  scope "(:work_month)" do
+    resources :work_days
+  end
+
+  get '/:work_month' => "work_days#index"
+
+  #get "work_days(/index)/:year/:month" => "work_days#index", 
+  #constraints: {year: /201[1-9,0]/, month: /[0,1]?\d/}  
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
