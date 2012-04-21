@@ -1,8 +1,7 @@
 <h1>Listing work_days</h1>
-
-<%= @work_days.count %>
-
-<%= create_calendar(@week_days_array, @work_days_hash) %>
+<div class="mycal">
+  <%= create_calendar(@week_days_array, @work_days_hash) %>
+</div>
 <table>
   <tr>
     <th>Day</th>
@@ -30,5 +29,8 @@
 <br />
 
 <%= link_to 'New Work day', new_work_day_path %>
-<%= link_to "prev", root_path(:date => @time - 1.month) %> |
-<%= link_to "next", root_path(:date => @time + 1.month) %>
+<br />
+
+<%= link_to "Prev month", work_days_path(:work_month => (@mon - 1.month)) %>
+<%= link_to "Next month", work_days_path(:work_month => (@mon + 1.month)) %>
+

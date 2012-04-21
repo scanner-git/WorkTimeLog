@@ -1,21 +1,20 @@
 
 class WorkDaysController < ApplicationController
-  before_filter :set_work_month
   # GET /work_days
   # GET /work_days.json
   def index
     #@work_days = WorkDay.all()
-    if params[:date]
-      @time = params[:date].to_time 
-    else
-      @time = Time.now
-    end
-
-    @work_days = WorkDay.in_month(month_from_beginnig_week_to_end_week(@time, range: true, date: true))
-
+    puts "PPPPPPPPPPPPPPPPPPPPPPPP #{@mon}"
+    #if params[:wtm]
+    #  @work_month_time = Time.now
+    #else
+    #  @work_month_time = Time.now
+    #end
+    #@mon = Date.new(@mon)
+    @work_days = WorkDay.in_month(month_from_beginnig_week_to_end_week(@mon, range: true, date: true))
     @work_days_hash = create_calendar_month_hash @work_days
-    @week_days_array = wdays_array_for_month(@time)
-    
+    @week_days_array = wdays_array_for_month(@mon)
+
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @work_days }
@@ -98,10 +97,6 @@ class WorkDaysController < ApplicationController
     end
   end
 
-  def get_month_for_view
-
-  end
-
   private
 
   # Erzeugt aus übergebenen WorkDay Array ein Hash mit dem Datum als Schlüssel
@@ -138,7 +133,6 @@ class WorkDaysController < ApplicationController
         week = Hash.new
       end
     }
-    
     days
   end
 
@@ -147,7 +141,5 @@ class WorkDaysController < ApplicationController
       yield(start_time)
     end while (start_time += step) <= end_time
   end
-
-  
 
 end
