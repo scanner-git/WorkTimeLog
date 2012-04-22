@@ -3,7 +3,7 @@ WorkTimeLog::Application.routes.draw do
 
   scope "(:work_month)" do
     resources :work_days
-
+    get "/test" => "work_days#test", :as => "my_test"
 
   end
 

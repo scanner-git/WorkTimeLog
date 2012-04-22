@@ -1,0 +1,17 @@
+
+<div class="hero-unit">
+	<% if content_for?(:calen) %>
+		<div class="row-fluid">
+			<div class="span6 text_center">
+				<h2>Monat</h2>
+			</div>
+			<div class="span6">
+				<h2><%= @mon.month %></h2>
+			</div>
+
+			<div class="mycal">
+				<%= yield(:calen) %>
+			</div>	
+		</div>
+	<% end %>
+</div>

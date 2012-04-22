@@ -1,7 +1,10 @@
 <h1>Listing work_days</h1>
-<div class="mycal">
-  <%= create_calendar(@week_days_array, @work_days_hash) %>
-</div>
+
+  <% content_for :calen do %>
+    <%= create_calendar(@week_days_array, @work_days_hash) %>
+  <% end %>
+
+
 <table>
   <tr>
     <th>Day</th>

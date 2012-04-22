@@ -8,6 +8,35 @@ body {
 }
 
 .mycal{
-	padding: 20px;
 	margin: auto;
+	width: 100%;
+}
+
+.caltable{
+	width: 100%;
+	margin: auto;
+	td{
+		height: 50px;
+	}
+}
+
+.text_center{
+	text-align: center;
+}
+
+.hero-unit{
+	padding: 10px;
+}
+
+.atag{
+	border: solid 1px;
+	margin: auto;
+	color: green;
+	width: 40px;
+	background-color: red;
+	text-align: center;
+}
+.atag2{
+	border: solid 3px;
+	height: 200px;
 }

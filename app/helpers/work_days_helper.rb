@@ -1,9 +1,10 @@
+#encoding: utf-8
 module WorkDaysHelper
 
 	def create_calendar(days_array, work_days)
 		wdayhash = { 0 => "SO", 1 => "MO", 2 => "DI", 3 => "MI", 4 => "DO", 5 => "FR", 6 => "SA" }
 		# TABLE
-		content_tag(:table, :border => 1, :textalligne => "center"){		
+		content_tag(:table, :border => 1, :textalligne => "center", :class => "caltable"){		
 			# Table header
 			c_c_tag(:tr){
 				wdayhash.each do |i, j| 
@@ -17,9 +18,11 @@ module WorkDaysHelper
 					week_hash.each do |wday, day|
 						if work_days[day.to_date].class == WorkDay 
 							d = WorkDay.where(day: day.to_date).first
-							c_c_tag(:td, d.day)
+							c_c_tag(:td, class: "atag"){
+								 c_c_tag(:i, d.start_work.strftime("%H:%M"))
+							}
 						else
-							c_c_tag(:td, link_to(day.day, new_work_day_path(day: day)))
+							concat content_tag(:td, day.day, class: "atag")
 						end
 					end
 				}

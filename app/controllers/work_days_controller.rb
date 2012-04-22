@@ -4,7 +4,6 @@ class WorkDaysController < ApplicationController
   # GET /work_days.json
   def index
     #@work_days = WorkDay.all()
-    puts "PPPPPPPPPPPPPPPPPPPPPPPP #{@mon}"
     #if params[:wtm]
     #  @work_month_time = Time.now
     #else
@@ -95,6 +94,10 @@ class WorkDaysController < ApplicationController
       format.html { redirect_to work_days_url }
       format.json { head :no_content }
     end
+  end
+
+  def test
+    
   end
 
   private
