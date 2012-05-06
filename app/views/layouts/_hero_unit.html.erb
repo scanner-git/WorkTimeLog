@@ -1,17 +1,27 @@
 
 <div class="hero-unit">
 	<% if content_for?(:calen) %>
+		
+		<div class="work_day_info round">
+			<div class="close text_center round">X</div>
+			<div class="wd_info_text"></div>
+		</div>
+		
 		<div class="row-fluid">
+			
 			<div class="span6 text_center">
-				<h2>Monat</h2>
+				<h2>Monat <%= @mon.month %></h2>
 			</div>
 			<div class="span6">
-				<h2><%= @mon.month %></h2>
+				
+				<%= link_to "Prev month", work_days_path(:work_month => (@mon - 1.month)), class: "btn btn-info" %>
+				<%= link_to "Next month", work_days_path(:work_month => (@mon + 1.month)) , class: "btn btn-info"%>
 			</div>
 
-			<div class="mycal">
-				<%= yield(:calen) %>
-			</div>	
+				
+		</div>
+		<div class="mycal">
+			<%= yield(:calen) %>
 		</div>
 	<% end %>
 </div>

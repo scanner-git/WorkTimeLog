@@ -1,39 +1,10 @@
-<h1>Listing work_days</h1>
+<pre> <h1>index.html.erb</h1> </pre>
 
   <% content_for :calen do %>
     <%= create_calendar(@week_days_array, @work_days_hash) %>
   <% end %>
 
-
-<table>
-  <tr>
-    <th>Day</th>
-    <th>Start work</th>
-    <th>End work</th>
-    <th>Note</th>
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>
-
-<% @work_days.each do |work_day| %>
-  <tr>
-    <td><%= work_day.day %></td>
-    <td><%= work_day.start_work.strftime("%H:%M") %></td>
-    <td><%= work_day.end_work.strftime("%H:%M") %></td>
-    <td><%= work_day.note %></td>
-    <td><%= link_to 'Show', work_day %></td>
-    <td><%= link_to 'Edit', edit_work_day_path(work_day) %></td>
-    <td><%= link_to 'Destroy', work_day, confirm: 'Are you sure?', method: :delete %></td>
-  </tr>
-<% end %>
-</table>
-
 <br />
 
-<%= link_to 'New Work day', new_work_day_path %>
-<br />
 
-<%= link_to "Prev month", work_days_path(:work_month => (@mon - 1.month)) %>
-<%= link_to "Next month", work_days_path(:work_month => (@mon + 1.month)) %>
 

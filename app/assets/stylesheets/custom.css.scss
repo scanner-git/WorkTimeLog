@@ -1,3 +1,42 @@
+#Example_A {
+height: 65px;
+width:160px;
+-moz-border-radius-bottomright: 50px;
+border-bottom-right-radius: 50px;
+}
+#Example_B {
+height: 65px;
+width:160px;
+-moz-border-radius-bottomright: 50px 25px;
+border-bottom-right-radius: 50px 25px;
+}
+#Example_C {
+height: 65px;
+width:160px;
+-moz-border-radius-bottomright: 25px 50px;
+border-bottom-right-radius: 25px 50px;
+}
+#Example_D {
+height: 5em;
+width: 12em;
+-moz-border-radius: 1em 4em 1em 4em;
+border-radius: 1em 4em 1em 4em;
+}
+#Example_E {
+height: 65px;
+width:160px;
+-moz-border-radius: 25px 10px / 10px 25px;
+border-radius: 25px 10px / 10px 25px;
+}
+#Example_F {
+height: 70px;
+width: 70px;
+-moz-border-radius: 35px;
+border-radius: 35px;
+}
+
+
+
 body {
 	padding-top: 60px;
 	padding-bottom: 40px;
@@ -7,16 +46,13 @@ body {
 	padding: 9px 0;
 }
 
-.mycal{
-	margin: auto;
-	width: 100%;
-}
 
 .caltable{
 	width: 100%;
 	margin: auto;
 	td{
 		height: 50px;
+		width: 50px;
 	}
 }
 
@@ -26,17 +62,80 @@ body {
 
 .hero-unit{
 	padding: 10px;
+	position: relative;
+	.work_day_info{
+		z-index: 500;
+		background-color: black;
+		color: white;
+		padding: 10px;
+		display: none;
+		width: 100px;
+		height: 100px;
+		position: fixed;
+		
+		.close{
+			z-index: 1501;
+			background-color: white;
+			opacity: 1;
+			color: black;
+			position: absolute;
+			top: 2px;
+			left: 2px;
+			width: 20px;
+			height: 20px;
+			border: solid 2px white;
+		}
+		.wd_info_text{
+			position: relative;
+			top: 20px;
+		}
+	}
 }
 
-.atag{
-	border: solid 1px;
-	margin: auto;
-	color: green;
-	width: 40px;
-	background-color: red;
-	text-align: center;
+.mycal{
+	width: 100%;
+	height: 100%;
 }
-.atag2{
-	border: solid 3px;
-	height: 200px;
+
+.kalender_zelle{
+	border: solid 1px green;
+	position: relative;
+	margin: auto;	
+	width: 99%;
+	height: 100%;
 }
+
+.kalender_datum{
+	position: absolute;
+	top: 2px;
+	left: 2px;
+}
+
+.arbeitszeit{
+	position: absolute;
+	top: 2px;
+	right: 2px;
+}
+
+.start_end_zeit{
+	position: absolute;
+	bottom: 1px;
+	left: 1px;
+	right: 1px;
+}
+
+.wd_info{
+	position: absolute;
+	top: 2px;
+	left: 35px;
+}
+
+.round {
+	border-radius:5px;
+	-moz-border-radius:5px;
+	-webkit-border-radius:5px;
+}
+
+
+
+

@@ -1,15 +1,53 @@
-<div class="atag2">
-<%= content_tag(:div, "TesT", class: "atag") do %>
-<% "TEST" %>
+<div class="mwin">
+	<div class="atag2">
 
-<%= content_tag(:p, "HAHAHAHA") %>
-<%= content_tag(:p, "HAHAHAHA") %>
-<%= content_tag(:p, "HAHAHAHA") %>
-<%= content_tag(:p, "HAHAHAHA") %>
-<%= content_tag(:p, "HAHAHAHA") %>
-
-<% end %>
+		<span class="pull-left inline">Hallo</span>
+			<ul>
+					<li>test1</li>
+					<li>test2</li>
+					<li>test3</li>
+					<li>test4</li>
+					<li>test5</li>
+			</ul>
+		<span class="pull-right inline">Hallo</span>
+	</div>
 
 </div>
 
 <%= link_to "root", root_path %>
+<br />
+<section id="thumbnails">
+<ul class="thumbnails">
+  <li class="span4">
+    <a href="#" class="thumbnail">
+      <img src="<%= asset_path('rails.png') %>" alt="">
+      <h5>Thumbnail label</h5>
+      <p>Thumbnail caption right here...</p>
+    </a>
+  </li>
+  <li class="span3">
+    <div href="#" class="thumbnail round">
+      <video src="<%= asset_path('09_05_2010.webm') %>" width="260" height="180" controls > </video>
+      <h5>Thumbnail label</h5>
+      <p>Thumbnail caption right here...</p>
+    </div>
+  </li>
+  <li class="span3">	
+  	<a href="#" class="thumbnail">
+      <img src="http://placehold.it/260x180" alt="">
+      <h5>Thumbnail label</h5>
+      <p>Thumbnail caption right here...</p>
+    </a>
+  </li>
+</ul>
+</section>
+
+<video src="<%= asset_path('20120303_155155.webm') %>" width="460" height="380" controls="controls"></video>
+
+<video src="<%= asset_path('07_03_2010.webm') %>" controls="controls"></video>
+
+<video src="<%= asset_path('12_06_2010.webm') %>" controls="controls"></video>
+
+<video src="<%= asset_path('19_02_2010.webm') %>" controls="controls"></video>
+
+<video src="<%= asset_path('25_03_2010.webm') %>" controls="controls"></video>
