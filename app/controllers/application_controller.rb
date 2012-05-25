@@ -4,7 +4,7 @@ class ApplicationController < ActionController::Base
   before_filter :set_month
 
 
-  private
+  private 
 
   def set_month
   	if params[:work_month]
@@ -17,7 +17,6 @@ class ApplicationController < ActionController::Base
   def default_url_options(options={})
     { work_month: @mon }
   end
-
 
 #  def locale_path(locale)
 #    locale_regexp = %r{/(en|de)/?}
