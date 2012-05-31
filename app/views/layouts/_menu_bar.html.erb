@@ -26,14 +26,26 @@
           </li>
         </ul>
 
-        <form class="navbar-form pull-right">
-          <input type="text" class="input-small" placeholder="Email">
-          <input type="password" class="input-small" placeholder="Password">
-          <button type="submit" class="btn btn-primary ">Sign In</button>
-        </form>
-
-        <p class="navbar-text pull-right">Logged in as <a href="#">username</a></p>
+        <% if user_signed_in? %>
+          <p class="navbar-text pull-right"><%= link_to "Abmelden", logout_path, method: :delete, class: "white" %></p>
+        <% else %>
+          <%= form_tag sessions_path, class: "navbar-form pull-right" do %>
+            <%= text_field_tag :email, nil, class: "input-small" %>
+            <%= password_field_tag :password, nil, class: "input-small"%>
+            <%= submit_tag "Log in", class: "btn btn-primary" %>
+          <% end %>
+          <p class="navbar-text pull-right"><%= link_to "Registrieren", new_user_path, class: "white" %></p>
+        <% end %>
+      
       </div><!--/.nav-collapse -->
     </div>
   </div>
 </div>
+
+
+
+
+
+
+
+

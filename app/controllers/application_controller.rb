@@ -18,6 +18,16 @@ class ApplicationController < ActionController::Base
     { work_month: @mon }
   end
 
+
+  def current_user
+    if session[:user_id]
+      @current_user ||= User.find(session[:user_id])
+    end
+  end
+
+  def user_signed_in?
+    current_user.present?
+  end
 #  def locale_path(locale)
 #    locale_regexp = %r{/(en|de)/?}
 #    if request.env['PATH_INFO'] =~ locale_regexp
@@ -26,5 +36,5 @@ class ApplicationController < ActionController::Base
 #      "/#{locale}#{request.env['PATH_INFO']}"
 #    end
 #  end
-
+  helper_method :user_signed_in?
 end

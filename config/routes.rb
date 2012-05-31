@@ -1,5 +1,9 @@
 WorkTimeLog::Application.routes.draw do
   
+  get "login" => "sessions#new", as: "login"
+  post "sessions" => "sessions#create", as: "sessions"
+  delete "logout" => "sessions#destroy", as: "logout"
+  resources :users, only: [:new, :create]
 
   scope "(:work_month)" do
     resources :work_days
